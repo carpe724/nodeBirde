@@ -1,8 +1,11 @@
 import React from 'react';
+import AppLayout from '../component/AppLayout';
 
 const Home = () => {
     return (
-        <div>Hellow Next</div>
+        <AppLayout>
+            <div>Hellow Next</div>
+        </AppLayout>
     )
 }
 
