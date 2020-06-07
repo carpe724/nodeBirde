@@ -1,7 +1,11 @@
 검색엔진에서 검색이 되는게 필요하다 => next 사용 필요
 검색엔진에서 검색이 되는게 필요없다 => 단순 react, html, css
+react, vue 같은 싱글페이지는 -->> 데이터를 제외한 빈껍데기를 먼저 받고 이후(로딩창) 데이터를 받아 화면을 변경한다.
 
-# front Dev
+넥스트 프리패칭 : 사용자가 갈만한 다른페이지의 데이터도 미리 받음
+서버사이드 랜더링 : 사용자(크롤링봇)의 "처음" 브라우저 방문시 백엔드 데이터까지 전무 모든 데이터를 받아서 화면에 보여줌 => 크롤링 봇이 로딩중화면이 아니라 정상적인 데이터 화면을 받아갈 수 있음
+
+# front Dev 1step
 1. node, npm 설치
 2. npm init
     author "mark"
@@ -43,3 +47,44 @@
         - 설정은 일단 그대로 복사
 
 
+# front Dev 2step
+1. >npm i antd styled-components @ant-design/icons
+    - antd 4 버전, 아이콘은 따로 설치하는게 체크포인트
+2. component AppLayout.js
+    - import { Menu } from 'antd'
+    - 컴포넌트의 구성요소는 ant design 홈페이지를 참고
+3. antd 의 css, 공통요소 처리를 위한 pages > _app.js
+    - AppLayout.js 는 레이아웃 요소를 위한 공통요소 이지 모든 요소에 공통요소는 아님 구별됨.
+    - _app.js 는 따라서 공통 css들 common css나 common js 등의 전체 공통요소 처리 페이지.
+    - next <head> 테그 처리 > import Head from 'next/head';
+    - 각페이지별 head 처리도 가능 
+4. antd 레이아웃
+    - 24 등분
+    - xs = 모바일, md = 테블릿 (antd : break point 참고)
+    - gutter 컬럼 사이에 간격 8 => 좌우 4픽셀 패딩
+5. login 처리에 따른 화면 전환
+    - 서버가 없으니 로그인처리 x, 더미데이터를 활용해보자. useState활용
+    - const [isLoggedin, setIsLoggedIn] = useState(false);
+    - component 폴더내 LoginForm, UserProfile 컴포넌트 js추가 > applayout에 임폴트
+6. LoginForm
+    - form 테그, label, htmlfor, value, onchange 활용해서 컴포넌트 작성
+    - id, password 를 useState활용해서 저장
+    - onchangeId, onchangePassword 함수 생성 => etarget.value의 set~ 활용을 통해 스테이트 업데이트
+    - Button 의 htmlType="submit" 이 form 테그의 onFinish={onSubmitForm} 함수를 실행
+    - onFinish 는 e prevent default 가 기본적용되어있다.
+    - onSubmitForm -> setIsLoggedIn(true) => [AppLayout.js] isLoggedIn -> true로 변경 => UserProfile 컴포넌트 화면으로 변경
+
+    * 컴포넌트내 스타일 수정시 객체로 일일이 넣으면 리렌더링 이슈가발생 style-component, memo 활용하여 style 적용
+    - style-component : 
+        <ButtonWrapper></ButtonWrapper>, 
+        const ButtonWrapper = styled.div`
+            margin-top: 10px;
+        `;
+
+    - memo 
+        <test style={style}></test>
+        const style = useMemo(()=>({marginTop : 10}), []);
+
+7. UserProfile
+    - antd Card, avatar, button 활용
+    - <Button> onLogOut 함수 실행시 setIsLoggedIn(false) 으로 로그아웃 만들기

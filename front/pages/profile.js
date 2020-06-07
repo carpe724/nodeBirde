@@ -1,11 +1,18 @@
 import React from 'react';
-import AppLayout from '../component/AppLayout';
+import AppLayout from '../components/AppLayout';
+import Head from 'next/head';
 
 const Profile = () => {
     return (
-        <AppLayout>
-            <div>회원정보 페이지</div>
-        </AppLayout>
+        <>
+            <Head> 
+                <title>내 프로필</title>
+            </Head>
+            <AppLayout>
+
+                <div>내 프로필 페이지</div>
+            </AppLayout>
+        </>
     )
 }
 
