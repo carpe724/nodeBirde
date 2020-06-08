@@ -88,3 +88,16 @@ react, vue 같은 싱글페이지는 -->> 데이터를 제외한 빈껍데기를
 7. UserProfile
     - antd Card, avatar, button 활용
     - <Button> onLogOut 함수 실행시 setIsLoggedIn(false) 으로 로그아웃 만들기
+
+8. profile.js
+    - NicknameEditForm, FollwList 컴포넌스 생성
+    - followingList, followerList 더미 데이터 배열 저장후 data prop으로 전달.
+    - header data 로 title도 전달.
+    - components/NicknameEditForm.js 은 특별한건 없음
+
+9. components/FollowList.js
+    - prop 전달(header, data)이 있으므로 proptypes 설정하기
+    - List option 설정 antd 참고
+    - dataSource 로 data prop을 받고 rednderItem 에서 (item) 으로 배열이 반복되어 카드 추가
+    - antd 아이콘들은 따로 추가되는걸 체크
+    
