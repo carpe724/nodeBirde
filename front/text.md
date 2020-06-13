@@ -100,4 +100,18 @@ react, vue 같은 싱글페이지는 -->> 데이터를 제외한 빈껍데기를
     - List option 설정 antd 참고
     - dataSource 로 data prop을 받고 rednderItem 에서 (item) 으로 배열이 반복되어 카드 추가
     - antd 아이콘들은 따로 추가되는걸 체크
-    
+
+10. 커스텀 hooks!
+    - LoginForm, signup Form 의 Input 에 중복되는 작업을 hooks로 처리
+    - hooks/useInput.js 로 정리
+    - 비밀번호 체크 에러처리 및 약관동의는 내용이 다르므로 따로 처리
+    - err내용을 styled-component로 처리
+    - Err는 onChange 함수 실행시 true 가 되면 err 내용이 출력되도록 처리.
+    - onSubmit 에서 페스워드 일치, 약관동의 등의 엑션을 한번더 체크 처리
+
+    * 잘모르는 부분
+    - hooks가 어떻게 동작하는거지?
+    - useCallback 시 마지막 배열에 넣는 state는 무슨의미지?
+    - 그전에 일단 useCallback, useMemo, useState 정확하게 알고있나?
+
+
