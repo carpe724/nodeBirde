@@ -43,3 +43,30 @@
     - initialState(export 추가), action, case 분리
     - case(user, post 의 state 뎁스 구조가 바뀐점 수정)
     - [index.js] 에서 combinReducer 추가하여 리듀서 함수끼리 합칠수 있게한다.
+
+7. [reducers/post.js] 작성
+    - mainPosts initial data 구성
+    - // db 시퀄라이즈에서 관계 데이터 합쳐지는 경우 대문자 시작 속성때문에 (User, Images, Comments) 등의 키값은 대문자로 주곤한다.
+    - const ADD_POST = 'ADD_POST'; 변수명을 상수에 한번더 대입시켜 오타시 에러 체크 가능
+    - dummyPost 생성
+    - ADD_POST case 시 dummyPost 를 배열 앞에다가 추가해야 게시글이 위에서부터 쌓임 >> 반대도가능?
+
+8. [pages/index.js] 페이지 작업
+    - <PostForm /> <PostCard /> 작성
+    - isLoggedin, mainPosts state 준비
+    - isLoggedin -> 게시글적는 <PostForm /> 은 로그인 한 사용자만 보이게
+    - mainPosts -> map을 사용하여 배열에 담긴 데이터를 가져오는데 map 사용시 key를 입력한다. 여기서 주의할점 key값에 index를 주면 안되는 경우
+        1. 배열이 수정 삭제 되는 경우
+        2. 배열의 순서가 변경되는 경우
+    와 같이 key 값에 수정이 이루어지는 경우 index를 키값으로 주는건 안티패턴,
+    따라서 reducers에 준비된 id를 사용하도록한다. 또 
+
+9. [components/PostForm.js] 작성
+    - {Form, input, button} 등 테그 속성은 antd 참고
+    - onChangeText > useState 사용
+    - onSubmit > useDispatch, dispatch(addPost); + setText('') 전송후 textArea 비우기
+    - 이미지 업로드 버튼
+        1. input type="file" 에 ref(useRef) 추가
+        2. 이미지 업로드 버튼에 onClickImageUpload
+        3. onClickImageUpload 함수에서  ref.current.click()
+    - 업로드된 이미지 미리보기는 다음 작업 imagePaths 는 일단 useSelector로 state.post의 imagepaths를 불러온다. 배열을 불러와서 컴포넌트를 추가함으로 map, key 체크하기
