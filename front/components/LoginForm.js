@@ -4,6 +4,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import useInput from '../hooks/useInput';
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../reducers/user';
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;
@@ -12,8 +14,11 @@ const ButtonWrapper = styled.div`
 const FormWrappper = styled(Form)`
     padding : 10px;
 `
+// redux -->>
+const LoginForm = () => {
+    // redux -->>
+    const dispatch = useDispatch();
 
-const LoginForm = ({ setIsLoggedIn }) => {
     // const [id, setId] = useState('');
     // const onChangeId = useCallback((e) => {
     //     setId(e.target.value); 
@@ -28,8 +33,10 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
     const onSubmitForm = useCallback(() => {
         console.log(id, password);
-        setIsLoggedIn(true);
-    }, [id, password])
+        // redux -->>
+        // setIsLoggedIn(true);
+        dispatch(loginAction({id, password}));
+    }, [id, password]);
 
     const style = useMemo(()=>({marginTop : 10}), []);
 
