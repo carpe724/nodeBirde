@@ -83,3 +83,4 @@
 10. [components/imagesZoom/index.js]
     - imagesZoom 폴더를 하나더 생성
     - npm i react-slick
+    - style.js 를 따로 분리해서 관리
