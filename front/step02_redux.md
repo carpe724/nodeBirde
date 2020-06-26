@@ -59,7 +59,7 @@
         1. 배열이 수정 삭제 되는 경우
         2. 배열의 순서가 변경되는 경우
     와 같이 key 값에 수정이 이루어지는 경우 index를 키값으로 주는건 안티패턴,
-    따라서 reducers에 준비된 id를 사용하도록한다. 또 
+    따라서 reducers에 준비된 id를 사용하도록한다. 추가로 prop에 post 데이터 전송.
 
 9. [components/PostForm.js] 작성
     - {Form, input, button} 등 테그 속성은 antd 참고
@@ -70,3 +70,16 @@
         2. 이미지 업로드 버튼에 onClickImageUpload
         3. onClickImageUpload 함수에서  ref.current.click()
     - 업로드된 이미지 미리보기는 다음 작업 imagePaths 는 일단 useSelector로 state.post의 imagepaths를 불러온다. 배열을 불러와서 컴포넌트를 추가함으로 map, key 체크하기
+
+9. [components/PostCard.js] 작성
+    - npm i @ant-design/icons
+    - 버튼 카드 작성 > Optional chaining 기법을 활용해서 로그인 id를 체크 그리고 그게 게시물에 주인인지 아닌지를 판가름
+    - 그 외 댓글 및 커버 이미지 화면 [components/PostImages.js], [components/CommentForm.js] 기본틀 작성
+    -[components/CommentForm.js]
+    - 의 경우 이 코멘트가 어떤 게시글의 코맨트 인지 알기 위해 게시글의 아이디를  prop로 넘긴다
+    - 버튼 좋아요 및 댓글 토글 기능 (prev) => !(prev) 활용!
+    - [components/PostImages.js] images.length 를 통해 1개 2개 3개이상 일 경우로 분기 처리, role="presentation" 체크
+
+10. [components/imagesZoom/index.js]
+    - imagesZoom 폴더를 하나더 생성
+    - npm i react-slick

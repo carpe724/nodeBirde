@@ -15,10 +15,15 @@ export const initialState = {
         },],
         Comments: [{
             User: {
-                nickname: 'nero'
+                nickname: 'nero',
             },
             content: '우와 신기해요 ~',
-        }],
+        }, {
+            User: {
+                nickname: 'hero',
+            },
+            content: '너무 재밌어요~!',
+        }]
         // db 시퀄라이즈에서 관계 데이터 합쳐지는 경우 대문자 시작 속성때문에 (User, Images, Comments) ,
         // 우선적으로 프론트 개발자라면 서버개발자와 리덕스 데이터 구조 합의 필요
     }],
@@ -42,7 +47,7 @@ const dummyPost = {
     Comments: [],
 };
 
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -51,9 +56,10 @@ const reducer = (state = initialState, action) => {
                 // dummyPost 를 배열 앞에다가 추가해야 게시글이 위에서부터 쌓임 >> 반대도가능?
                 postAdded: true,
             }
-        default: 
-            return state;
+        default: {
+            return {
+                ...state,
+            }
+        }
     }
 };
-
-export default reducer;
