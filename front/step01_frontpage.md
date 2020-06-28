@@ -115,3 +115,6 @@ react, vue 같은 싱글페이지는 -->> 데이터를 제외한 빈껍데기를
     - 그전에 일단 useCallback, useMemo, useState 정확하게 알고있나?
 
 
+11. 해시테그 추가하기
+    - [PostCard.js]
+    - [PostCardContent.js]
