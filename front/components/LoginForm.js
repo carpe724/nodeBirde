@@ -4,8 +4,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import useInput from '../hooks/useInput';
-import { useDispatch } from 'react-redux';
-import { loginAction } from '../reducers/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequestAction } from '../reducers/user';
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;
@@ -35,12 +35,14 @@ const LoginForm = () => {
         console.log(id, password);
         // redux -->>
         // setIsLoggedIn(true);
-        dispatch(loginAction({id, password}));
+        dispatch(loginRequestAction({id, password}));
     }, [id, password]);
 
     const style = useMemo(()=>({marginTop : 10}), []);
 
     const ButtonLeft = useMemo(()=>({marginLeft: 10}), []);
+
+    const { isLoggingIn } = useSelector((state)=>state.user);
 
     return(
         <FormWrappper onFinish={onSubmitForm}>
@@ -62,7 +64,7 @@ const LoginForm = () => {
                 />
             </div>
             <ButtonWrapper style={style}>
-                <Button type="primary" htmlType="submit" loading={false}>로그인</Button>
+                <Button type="primary" htmlType="submit" loading={isLoggingIn}>로그인</Button>
                 <Link href="/signup"><a><Button style={ButtonLeft}>회원가입</Button></a></Link>
             </ButtonWrapper>
         </FormWrappper>
@@ -70,3 +72,5 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+
